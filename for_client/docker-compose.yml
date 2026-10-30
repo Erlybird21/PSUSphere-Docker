@@ -1,0 +1,17 @@
+services:
+  web:
+    image: erlybird21/psusphere:latest
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "True"
+      ALLOWED_HOSTS: "localhost,127.0.0.1"
+      USE_SQLITE: "true"
+      SQLITE_PATH: "/data/db.sqlite3"
+      SECRET_KEY: "${SECRET_KEY:-}"
+    volumes:
+      - psusphere_data:/data
+    restart: unless-stopped
+
+volumes:
+  psusphere_data:
